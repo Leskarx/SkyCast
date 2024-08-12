@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/practice.dart';
+import 'package:flutter_application_1/splashScreen.dart';
 
 
 void main(){
@@ -14,7 +14,7 @@ class Myapp extends StatelessWidget{
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
     
-      home: LandingPage()  
+      home: Splashscreen() 
     );
    
   }

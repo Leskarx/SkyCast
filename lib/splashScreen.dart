@@ -1,8 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:async';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/homePage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+
+class Splashscreen extends StatefulWidget {
+  const Splashscreen({super.key});
+
+  @override
+  State<Splashscreen> createState() => _SplashscreenState();
+}
+
+class _SplashscreenState extends State<Splashscreen> {
+
+@override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 30), (){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const homePage()
+    ,));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,27 +90,14 @@ class LandingPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 260,
-                        child: ElevatedButton(
-                          
-                            style: const ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                    Color.fromRGBO(203, 221, 48, 1)),
-                                elevation: WidgetStatePropertyAll(3)),
-                            onPressed: () => {},
-                            child: const Padding(
-                              padding: EdgeInsets.only(top: 12, bottom: 12),
-                              child: Text(
-                                "Get Start",
-                                style: TextStyle(
-                                    color: Color.fromRGBO(54, 42, 132, 1),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    letterSpacing: 1),
-                              ),
-                            )),
-                      )
+                   Lottie.asset(
+  "assets/animations/splash.json",
+  height: 100, // Adjust height as needed
+  width: 200, // Adjust width as needed
+  repeat: true,
+  reverse: false,
+  animate: true,
+)
                     ],
                   )),
             ],
