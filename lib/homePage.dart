@@ -50,6 +50,7 @@ class _homePageState extends State<homePage>
 
   @override
   Widget build(BuildContext context) {
+       double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -98,43 +99,56 @@ class _homePageState extends State<homePage>
               opacity: _fadeInAnimation,
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Location",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "19°",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "Mostly Clear",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                   
+                     Padding(
+                      padding:  EdgeInsets.all(screenHeight/25),
+                      child:  const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Location",
+                            style: TextStyle(
+                               fontSize: 20,
+                               height: 1,
+                              color: Colors.white),
+                          ),
+                          Text(
+                            "19°",
+                            style: TextStyle(
+                              fontSize: 65,
+                            
+                              fontWeight: FontWeight.w100,
+                                  height: 1,
+                              color: Colors.white),
+                          ),
+                          Text(
+                            "Mostly Clear",
+                            style: TextStyle(
+                               height: 1,
+                              color: Color.fromARGB(255, 114, 114, 114)),
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 300,
-                    ),
+                   
                     // Image.asset("assets/images/House.png"),
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(30),
-                          topLeft: Radius.circular(30),
-                        ),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.4),
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(30),
-                                topLeft: Radius.circular(30),
-                              ),
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30),
+                      ),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                        child: Container(
+                          height: screenHeight/2.2,
+                          decoration: BoxDecoration(
+                            
+                            color: Colors.black.withOpacity(0.6),
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(30),
+                              topLeft: Radius.circular(30),
                             ),
                           ),
                         ),
