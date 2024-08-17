@@ -13,13 +13,15 @@ class Splashscreen extends StatefulWidget {
 }
 
 class _SplashscreenState extends State<Splashscreen> {
-
-@override
+  @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 30), (){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const homePage()
-    ,));
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const homePage(),
+          ));
     });
   }
 
@@ -90,14 +92,14 @@ class _SplashscreenState extends State<Splashscreen> {
                           ),
                         ],
                       ),
-                   Lottie.asset(
-  "assets/animations/splash.json",
-  height: 100, // Adjust height as needed
-  width: 200, // Adjust width as needed
-  repeat: true,
-  reverse: false,
-  animate: true,
-)
+                      Lottie.asset(
+                        "assets/animations/splash.json",
+                        height: 100, // Adjust height as needed
+                        width: 300, // Adjust width as needed
+                        repeat: true,
+                        reverse: false,
+                        animate: true,
+                      )
                     ],
                   )),
             ],
