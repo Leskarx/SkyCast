@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
 class homePage extends StatefulWidget {
@@ -50,7 +51,7 @@ class _homePageState extends State<homePage>
 
   @override
   Widget build(BuildContext context) {
-       double screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -66,6 +67,7 @@ class _homePageState extends State<homePage>
         ),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -101,38 +103,34 @@ class _homePageState extends State<homePage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                   
-                     Padding(
-                      padding:  EdgeInsets.all(screenHeight/25),
-                      child:  const Column(
+                    Padding(
+                      padding: EdgeInsets.all(screenHeight / 25),
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Location",
                             style: TextStyle(
-                               fontSize: 20,
-                               height: 1,
-                              color: Colors.white),
+                                fontSize: 20, height: 1, color: Colors.white),
                           ),
                           Text(
                             "19°",
                             style: TextStyle(
-                              fontSize: 65,
-                            
-                              fontWeight: FontWeight.w100,
-                                  height: 1,
-                              color: Colors.white),
+                                fontSize: 65,
+                                fontWeight: FontWeight.w100,
+                                height: 1,
+                                color: Colors.white),
                           ),
                           Text(
                             "Mostly Clear",
                             style: TextStyle(
-                               height: 1,
-                              color: Color.fromARGB(255, 114, 114, 114)),
+                                height: 1,
+                                color: Color.fromARGB(255, 114, 114, 114)),
                           ),
                         ],
                       ),
                     ),
-                   
+
                     // Image.asset("assets/images/House.png"),
                     ClipRRect(
                       borderRadius: const BorderRadius.only(
@@ -142,13 +140,46 @@ class _homePageState extends State<homePage>
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
-                          height: screenHeight/2.2,
+                          height: screenHeight / 2.2,
                           decoration: BoxDecoration(
-                            
                             color: Colors.black.withOpacity(0.6),
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(30),
                               topLeft: Radius.circular(30),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              color: Color.fromARGB(72, 193, 154, 213),
+                                              width: 2,
+                                              style: BorderStyle.solid))),
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(bottom:8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Hourly Forecast",
+                                          style: TextStyle(color: Color.fromARGB(136, 255, 255, 255)),
+                                        ),
+                                        Text(
+                                          "weekly forecast",
+                                          style: TextStyle(color: Color.fromARGB(136, 255, 255, 255)),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
