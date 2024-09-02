@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/widget/hourly.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -17,6 +18,8 @@ class _homePageState extends State<homePage>
   final myController = TextEditingController();
   late AnimationController _animationController;
   late Animation<double> _fadeInAnimation;
+  
+
 
   @override
   void initState() {
@@ -52,6 +55,7 @@ class _homePageState extends State<homePage>
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    var showingHourly=true;
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -156,29 +160,67 @@ class _homePageState extends State<homePage>
                                   decoration: const BoxDecoration(
                                       border: Border(
                                           bottom: BorderSide(
-                                              color: Color.fromARGB(72, 193, 154, 213),
+                                              color: Color.fromARGB(
+                                                  72, 193, 154, 213),
                                               width: 2,
                                               style: BorderStyle.solid))),
-                                  child: const Padding(
-                                    padding: EdgeInsets.only(bottom:8),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(bottom: 8),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "Hourly Forecast",
-                                          style: TextStyle(color: Color.fromARGB(136, 255, 255, 255)),
+                                        InkWell(
+                                          onTap: () {
+
+                                            print("Tapped");
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12, horizontal: 24),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              // adding color will hide the splash effect
+                                              // color: Colors.blueGrey.shade200,
+                                            ),
+                                            child: const Text(
+                                              "Hourly forecast",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      167, 255, 255, 255)),
+                                            ),
+                                          ),
                                         ),
-                                        Text(
-                                          "weekly forecast",
-                                          style: TextStyle(color: Color.fromARGB(136, 255, 255, 255)),
+                                        InkWell(
+                                       
+                                          onTap: () {
+                                            print("weekly forecast");
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12, horizontal: 24),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              // adding color will hide the splash effect
+                                              // color: Colors.blueGrey.shade200,
+                                            ),
+                                            child: const Text(
+                                              "Weekly forecast",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      167, 255, 255, 255)),
+                                            ),
+                                          ),
                                         )
                                       ],
                                     ),
                                   ),
-                                )
+                                ),
+                             const hourly()
                               ],
                             ),
                           ),
