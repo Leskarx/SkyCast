@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/widget/hourly.dart';
+import 'package:flutter_application_1/widget/weekly.dart';
 
 class homePage extends StatefulWidget {
-  const homePage({super.key});
+  final String? temp;
+  const homePage({Key? key,this.temp}) : super(key: key);
 
   @override
   State<homePage> createState() => _homePageState();
@@ -14,10 +16,12 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage>
     with SingleTickerProviderStateMixin {
+ 
   String? variable;
   final myController = TextEditingController();
   late AnimationController _animationController;
   late Animation<double> _fadeInAnimation;
+   var showingHourly=true;
   
 
 
@@ -55,7 +59,7 @@ class _homePageState extends State<homePage>
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    var showingHourly=true;
+   
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -109,23 +113,23 @@ class _homePageState extends State<homePage>
                   children: [
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 25),
-                      child: const Column(
+                      child:  Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Location",
                             style: TextStyle(
                                 fontSize: 20, height: 1, color: Colors.white),
                           ),
                           Text(
-                            "19°",
-                            style: TextStyle(
-                                fontSize: 65,
+                           "${widget.temp}°c",
+                            style:const  TextStyle(
+                                fontSize: 50,
                                 fontWeight: FontWeight.w100,
                                 height: 1,
                                 color: Colors.white),
                           ),
-                          Text(
+                        const  Text(
                             "Mostly Clear",
                             style: TextStyle(
                                 height: 1,
@@ -165,7 +169,7 @@ class _homePageState extends State<homePage>
                                               width: 2,
                                               style: BorderStyle.solid))),
                                   child: Padding(
-                                    padding: EdgeInsets.only(bottom: 8),
+                                    padding: const EdgeInsets.only(bottom: 8),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -175,7 +179,9 @@ class _homePageState extends State<homePage>
                                         InkWell(
                                           onTap: () {
 
-                                            print("Tapped");
+                                            setState(() {
+                                              showingHourly=true;
+                                            });
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
@@ -197,7 +203,9 @@ class _homePageState extends State<homePage>
                                         InkWell(
                                        
                                           onTap: () {
-                                            print("weekly forecast");
+                                            setState(() {
+                                              showingHourly=false;
+                                            });
                                           },
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
@@ -220,7 +228,10 @@ class _homePageState extends State<homePage>
                                     ),
                                   ),
                                 ),
-                             const hourly()
+                                showingHourly?hourly():Weekly(),
+
+
+                             
                               ],
                             ),
                           ),

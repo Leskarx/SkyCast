@@ -1,9 +1,10 @@
 import 'dart:async';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/homePage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'dart:convert';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -16,14 +17,36 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const homePage(),
-          ));
-    });
+ 
+apiCall();
+    // Timer(const Duration(seconds: 3), () {
+    //   Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => const homePage(),
+    //       ));
+    // });
   }
+ 
+ void apiCall() async {
+  const api =
+      "https://api.openweathermap.org/data/2.5/weather?q=Jorhat&APPID=ec80bfbf062a396b619cec6dab1d9d3c";
+  var response = await http.get(Uri.parse(api));
+  var data = jsonDecode(response.body);
+  var tempData = double.parse(data['main']['temp'].toString());
+  var finalData = tempData - 273.15;
+  
+  // Convert double to String with desired precision
+  String tempString = finalData.toStringAsFixed(1); // e.g., "23.5"
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => homePage(temp: tempString),
+    ),
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {

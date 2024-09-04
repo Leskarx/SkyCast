@@ -20,7 +20,7 @@ Future fetchData() async{
 return data;
 }
 var data=await fetchData();
-print(data);
+print(data['main']['temp']);
 }
 
 
